@@ -18,7 +18,5 @@
     "@types/js-yaml": "^4.0.9",
     "js-yaml": "^4.3.0"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "sharp"]
-  }
+  "packageManager": "pnpm@11.15.1"
 }
