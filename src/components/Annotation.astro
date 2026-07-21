@@ -2,7 +2,7 @@
 // Annotation.astro — Inline annotation with hover tooltip
 // Usage in MDX:
 //   import Annotation from '../../components/Annotation.astro';
-//   <Annotation text="The explanation that appears on hover">highlighted term</Annotation>
+//   <Annotation text="The <b>explanation</b> that appears on hover. <a href='...'>Learn more</a>">highlighted term</Annotation>
 export interface Props {
 	text: string;
 }
@@ -10,9 +10,9 @@ export interface Props {
 const { text } = Astro.props;
 ---
 
-<span class="annotated" data-annotation={text}>
+<span class="annotated">
 	<slot />
-	<span class="annotated-tooltip" role="tooltip">{text}</span>
+	<span class="annotated-tooltip" role="tooltip" set:html={text} />
 </span>
 
 <style>
@@ -38,10 +38,9 @@ const { text } = Astro.props;
 		transform: translateX(-50%) translateY(4px);
 		opacity: 0;
 		visibility: hidden;
-		pointer-events: none;
 		white-space: normal;
 		width: max-content;
-		max-width: 320px;
+		max-width: 360px;
 		padding: 10px 14px;
 		background: var(--sl-color-bg-nav, oklch(0.2 0 0));
 		color: var(--sl-color-text, oklch(0.95 0 0));
@@ -55,10 +54,17 @@ const { text } = Astro.props;
 			0 0 0 1px rgba(255, 255, 255, 0.05);
 		text-align: left;
 		z-index: 100;
+		pointer-events: none;
 		transition:
 			opacity 0.2s ease,
 			visibility 0.2s ease,
 			transform 0.2s ease;
+	}
+
+	/* Links inside tooltips */
+	.annotated-tooltip :global(a) {
+		color: var(--sl-color-text-accent, oklch(0.7 0.2 260));
+		text-decoration: underline;
 	}
 
 	/* Arrow */
@@ -77,6 +83,7 @@ const { text } = Astro.props;
 		opacity: 1;
 		visibility: visible;
 		transform: translateX(-50%) translateY(0);
+		pointer-events: auto;
 	}
 
 	/* Mobile: tap to show */
@@ -89,32 +96,29 @@ const { text } = Astro.props;
 			opacity: 1;
 			visibility: visible;
 			transform: translateX(-50%) translateY(0);
+			pointer-events: auto;
 		}
 	}
 </style>
 
 <script>
-	// Edge-aware positioning: flip tooltip if it would overflow the viewport
 	function repositionTooltips() {
 		document.querySelectorAll('.annotated-tooltip').forEach((tooltip) => {
-			const rect = tooltip.getBoundingClientRect();
+			const el = tooltip as HTMLElement;
+			const rect = el.getBoundingClientRect();
 			if (rect.left < 8) {
-				(tooltip as HTMLElement).style.left = '0';
-				(tooltip as HTMLElement).style.transform = 'translateY(4px)';
-				const parent = tooltip.parentElement as HTMLElement;
+				el.style.left = '0';
+				el.style.transform = 'translateY(4px)';
+				const parent = el.parentElement;
 				if (parent) {
-					parent.addEventListener('mouseenter', () => {
-						(tooltip as HTMLElement).style.transform = 'translateY(0)';
-					}, { once: true });
-					parent.addEventListener('mouseleave', () => {
-						(tooltip as HTMLElement).style.transform = 'translateY(4px)';
-					});
+					parent.addEventListener('mouseenter', () => { el.style.transform = 'translateY(0)'; }, { once: true });
+					parent.addEventListener('mouseleave', () => { el.style.transform = 'translateY(4px)'; });
 				}
 			}
 			if (rect.right > window.innerWidth - 8) {
-				(tooltip as HTMLElement).style.left = 'auto';
-				(tooltip as HTMLElement).style.right = '0';
-				(tooltip as HTMLElement).style.transform = 'translateY(4px)';
+				el.style.left = 'auto';
+				el.style.right = '0';
+				el.style.transform = 'translateY(4px)';
 			}
 		});
 	}

@@ -4,21 +4,22 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://YOUR_USERNAME.github.io',
-	base: '/gcdg-annoted',
+	site: 'https://riziles.github.io',
+	base: '/gcgd-annotated',
 
 	integrations: [
 		starlight({
 			title: 'Annotated Blog',
 			description: 'An annotated blog with hover-summary effects',
 			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/YOUR_USERNAME/gcdg-annoted' },
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/riziles/gcgd-annotated' },
 			],
 			sidebar: [
 				{
 					label: 'Posts',
 					items: [
 						{ label: 'Home', slug: '' },
+						{ label: 'The Carrier-Free Gospel', slug: 'posts/great-work' },
 					],
 				},
 			],

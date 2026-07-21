@@ -19,3 +19,19 @@
 		line-height: 1.8;
 	}
 }
+
+/* Chorus blocks (Socratic dialogue sidebar) */
+.chorus {
+	margin: 1.5rem 0;
+	padding: 1rem 1.25rem;
+	border-left: 3px solid var(--sl-color-text-accent, oklch(0.6 0.2 260));
+	background: var(--sl-color-bg-sidebar, oklch(0.15 0 0));
+	border-radius: 0 6px 6px 0;
+	font-size: 0.9rem;
+	color: var(--sl-color-gray-3);
+	font-style: italic;
+}
+.chorus b, .chorus strong {
+	font-style: normal;
+	color: var(--sl-color-text);
+}
