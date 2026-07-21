@@ -1,0 +1,42 @@
+---
+title: Annotated Blog
+description: A blog with hover-summary annotations
+---
+
+import Annotation from '../../components/Annotation.astro';
+
+Welcome to the **Annotated Blog**. Hover over any dotted-underlined phrase below to reveal additional context, commentary, or definitions.
+
+---
+
+## A Brief Introduction to Jorge Luis Borges
+
+<Annotation text="24 August 1899 – 14 June 1986. Argentine short-story writer, essayist, poet and translator.">Jorge Luis Borges</Annotation> is one of the most influential writers of the 20th century. His work explores themes of
+<Annotation text="A recurring motif in Borges: the idea that the universe is an infinite, recursive structure — like a library containing every possible book, or a story that contains itself.">infinity, mirrors, and labyrinths</Annotation>, often blurring the line between fiction and philosophy.
+
+His most famous collection, <Annotation text="Originally published in 1941 as 'El jardín de senderos que se bifurcan.' The English translation by Anthony Kerrigan expanded it with additional stories.">Ficciones</Annotation>, contains stories that anticipate concepts later explored by
+<Annotation text="The idea that complex systems can emerge from simple deterministic rules. Borges explored this decades before chaos theory was formalized.">chaos theory</Annotation> and digital culture. In <Annotation text='Perhaps his most famous story. A tale of a spy who discovers a novel that is also a labyrinth — where every possible outcome of every event is realized simultaneously.'>"The Garden of Forking Paths"</Annotation>, Borges imagines a novel that is also a labyrinth, prefiguring the structure of the
+<Annotation text="The concept of non-linear, multi-path narratives in digital media. The term was coined by Ted Nelson in the 1960s, but Borges anticipated it in the 1940s.">hypertext</Annotation> by decades.
+
+What makes Borges particularly relevant today is how his stories grapple with
+<Annotation text="Borges went blind in his 50s but continued to write through dictation. He said blindness forced him to rely on memory, which became a theme in his later work.">perception, memory, and the limits of knowledge</Annotation> — questions that feel urgent in an age of information overload and AI-generated text.
+
+---
+
+## How This Works
+
+This blog uses a custom <Annotation text="Built with Astro and Starlight. The annotation component is a single .astro file with scoped CSS and a tiny bit of JS for edge-aware positioning.">Annotation component</Annotation> that you can embed directly in your markdown. Each annotation:
+
+- Appears as a <Annotation text="The dotted underline signals that additional content is available. It's subtle enough not to disrupt reading flow but distinct enough to be noticed.">subtle dotted underline</Annotation>
+- Reveals a tooltip on hover with the full annotation text
+- Works on mobile via tap
+- Stays within the viewport automatically
+
+Annotations can contain **rich text** including *formatting*, [links](https://example.com), and
+<Annotation text="Yes, annotations can be nested — though the inner annotation's tooltip will appear on top of the outer one.">even nested annotations</Annotation>.
+
+---
+
+## From the Archive
+
+The source material for this blog is drawn from a Bluesky group chat — a conversation among friends exploring literature, philosophy, and digital culture. The chat has been converted to structured YAML for easy reference while writing annotated posts.

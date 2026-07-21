@@ -1,0 +1,21 @@
+/* Custom styles for gcdg-annoted */
+
+/* Smooth out the annotation tooltip */
+.annotated {
+	box-decoration-break: clone;
+	-webkit-box-decoration-break: clone;
+}
+
+/* Improve tooltip readability in dark/light modes */
+.annotated-tooltip {
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+}
+
+/* Blog post styling tweaks */
+.sl-markdown-content {
+	/* Give annotations some breathing room in paragraphs */
+	& p {
+		line-height: 1.8;
+	}
+}
